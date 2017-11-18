@@ -5,18 +5,28 @@
   <link rel="stylesheet" href="./css/index.css">
 </head>
 
-<header>340 SPORTS</header>
-    
-<nav>
+<nav class="header">
+    <ul>
+    <li class="header-title">340 SPORTS</li>
+    <li class="header-button"><a href="#">Account</a></li>
+    <li class="header-button"><a href="#">Settings</a></li>
+    </ul>
+</nav>
+<div class="content-container">
+<div class="bg-image-container">
+    <h1 class="page-title">HOME</h1>
+</div>
+<nav class="game-tabs">
     <ul>
         <li><a href="#">Live Games</a></li>
         <li><a href="#">Previous Games</a></li>
+        <li class="top-scorers-title">Top scorers</li>
     </ul>
 </nav>
     
 <body>
     <div class="your-games-container">
-    <div class="your-games-text">YOUR GAMES</div>
+    <div class="main-games-text">YOUR GAMES</div>
         <div class="game" id="game-1">
             <div class="team-1-name">Team 1</div>
             <div class="team-2-name">Team 2</div>
@@ -26,7 +36,7 @@
     <button class="more-games-button">View more...</button>
     
     <div class="other-games-container">
-    <div class="other-games-text">OTHER GAMES</div>
+    <div class="main-games-text">OTHER GAMES</div>
         <div class="game" id="game-3">
             <div class="team-1-name">Team 1</div>
             <div class="team-2-name">Team 2</div>
@@ -52,7 +62,6 @@
         }
         $num_row = mysqli_num_rows($result);
 
-        echo "<h1>Top Scorers</h1>";
         echo "<table border='1'>";
 
         echo "        <tr>";
@@ -73,6 +82,7 @@
     </div>
   <script src="js/scripts.js"></script>
 </body>
+</div>   
 </html>
 
 	
