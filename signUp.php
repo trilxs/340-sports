@@ -4,6 +4,10 @@
   session_start();
   include 'connectvarsEECS.php';
 
+  function generateUserID(){
+    return uniqid();
+  }
+
   function createRandomSalt(){
     return base64_encode(mcrypt_create_iv(12, MCRYPT_DEV_URANDOM));
   }
@@ -20,6 +24,7 @@
     }
 
     $userID = generateUserID();
+    $currencyAmount = 10000;
     $username = mysqli_escape_string($conn,$_POST["username"]);
     $firstName = mysqli_escape_string($conn,$_POST["firstName"]);
     $lastName = mysqli_escape_string($conn,$_POST["lastName"]);
@@ -28,7 +33,7 @@
     $password = mysqli_escape_string($conn,$_POST["password"]);
     $salt = generateRandomSalt();
 
-    $query = "INSERT INTO accounts(userID, password, email, username, firstName, lastName, middleName, age, salt) VALUES('$userID', MD5('$password$salt'), '$email', '$currencyAmount' '$username', '$firstName', '$lastName', '$middleName', '$age', '$salt')";
+    $query = "INSERT INTO accounts(userID, password, email, currencyAmount, username, firstName, lastName, middleName, age, salt) VALUES('$userID', MD5('$password$salt'), '$email', '$currencyAmount' '$username', '$firstName', '$lastName', '$middleName', '$age', '$salt')";
     if(mysqli_query($conn, $query)){
       echo "Success, account has been registered";
     }
@@ -45,7 +50,7 @@
   <h1>Register an account</h1>
 
   <body>
-    <form action="SignUp.php" method="post"><br>
+    <form action="signUp.php" method="post"><br>
       Username: <input type="text" name="username"><br>
       First name: <input type="text" name="firstName"><br>
       Last name: <input type="text" name="lastName"><br>
