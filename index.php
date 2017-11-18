@@ -24,26 +24,27 @@
     </ul>
 </nav>
     
-<body>
-    <div class="your-games-container">
-    <div class="main-games-text">YOUR GAMES</div>
-        <div class="game" id="game-1">
-            <div class="team-1-name">Team 1</div>
-            <div class="team-2-name">Team 2</div>
-            <button class="bet-button">Bet</button>
+<div class="body-container">
+    <div class="game-container" style="width:845px; display: inline-block;">
+        <div class="your-games-container">
+        <div class="main-games-text">YOUR GAMES</div>
+            <div class="game" id="game-1">
+                <div class="team-1-name">Team 1</div>
+                <div class="team-2-name">Team 2</div>
+                <button class="bet-button">Bet</button>
+            </div>
+        </div>
+        <button class="more-games-button">View more...</button>
+
+        <div class="other-games-container">
+        <div class="main-games-text">OTHER GAMES</div>
+            <div class="game" id="game-3">
+                <div class="team-1-name">Team 1</div>
+                <div class="team-2-name">Team 2</div>
+                <button class="bet-button">Bet</button>
+            </div>
         </div>
     </div>
-    <button class="more-games-button">View more...</button>
-    
-    <div class="other-games-container">
-    <div class="main-games-text">OTHER GAMES</div>
-        <div class="game" id="game-3">
-            <div class="team-1-name">Team 1</div>
-            <div class="team-2-name">Team 2</div>
-            <button class="bet-button">Bet</button>
-        </div>
-    </div>
-    
     <div class="top-scorers-container">
     <?php
     // include global connection variables
@@ -56,32 +57,33 @@
         }
 
     // Query the database for names of all tables	
-        $result = mysqli_query($conn, "SELECT username, currencyAmount FROM topScorers ORDER BY DESC");
+        $result = mysqli_query($conn, "SELECT username, currencyAmount FROM topScorers ORDER BY currencyAmount DESC");
         if (!$result) {
             die("Query to show fields from table failed");
         }
         $num_row = mysqli_num_rows($result);
 
-        echo "<table border='1'>";
-
+        echo "<table class='top-scorers-table'>";
+        
         echo "        <tr>";
         echo "           <th>Username</th>";
         echo "            <th>Score</th>";
         echo "        </tr>";
-
+        echo "<tbody class='table-hover'>";
         while($row = mysqli_fetch_row($result)) {	
             echo "<tr>";		
             foreach($row as $cell)		
-                echo "<td>$cell</td>";	
+                echo "<td class='text-left'>$cell</td>";	
             echo "</tr>\n";
         }
+        echo '</tbody></table>';
 
         mysqli_free_result($result);
         mysqli_close($conn);
     ?>
     </div>
   <script src="js/scripts.js"></script>
-</body>
+</div>
 </div>   
 </html>
 
