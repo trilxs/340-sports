@@ -56,7 +56,6 @@ html {
 }
 
 .header-title { 
-    font-family: "Gill Sans MT";
     color: white;
     font-size: 25px;
     padding-left: 290px;
@@ -282,6 +281,8 @@ transition: opacity .3s;
     border-radius:3px;
     border-collapse: collapse;
     margin: auto;
+    margin-top: 25px!important;
+    margin-bottom:25px!important;
     padding:5px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     animation: float 5s infinite;
@@ -399,11 +400,13 @@ transition: opacity .3s;
     .bet-container {
         position: absolute;
         top:0; right: 0;
+        width: 150px; height: 160px;
         color: white;
         font-size: 20px;
-        padding-right:20px;
-        padding-top: 45px;
+        text-align: center;
+        padding-top: 42px;
     }
+
 
     .bet-amount {
         text-align: center;
@@ -415,7 +418,6 @@ transition: opacity .3s;
         text-decoration: none;
         color: grey;
         font-size: 18px;
-        margin-top: 20px;
         margin-left: 170px; 
         background:none!important;
         border: none;
