@@ -8,8 +8,8 @@
 <nav class="header">
     <ul>
     <li class="header-title">340 SPORTS</li>
-    <li class="header-button"><a href="#">Account</a></li>
-    <li class="header-button"><a href="#">Settings</a></li>
+    <li class="header-button" id="h-btn1"><a href="#">Account</a></li>
+    <li class="header-button" id="h-btn2"><a href="#">Settings</a></li>
     </ul>
 </nav>
 <div class="content-container">
