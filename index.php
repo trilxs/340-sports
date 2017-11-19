@@ -29,9 +29,24 @@
         <div class="your-games-container">
         <div class="main-games-text">YOUR GAMES</div>
             <div class="game" id="game-1">
-                <div class="team-1-name">Team 1</div>
-                <div class="team-2-name">Team 2</div>
-                <button class="bet-button">Bet</button>
+                <table class="game-table">
+                    <tr class="team-1-container">
+                        <th class="team-1-image">IMAGE</th>
+                        <td class="team-1-name">Team 1</td>
+                        <td class="team-1-score">3</td>
+                        
+                    </tr>
+                    <tr class="team-2-container">
+                        <th class="team-2-image">IMAGE</th>
+                        <td class="team-2-name">Team 2</td>
+                        <td class="team-2-score">4</td>
+                    </tr>
+                </table>
+                <span class="bet-container">
+                    <div class="bet-text">Your bet was </div>
+                    <div class="bet-amount">$92,293</div>
+                    <button class="bet-button" style="display: none;">Bet</button>
+                </span>
             </div>
         </div>
         <button class="more-games-button">View more...</button>
@@ -39,8 +54,8 @@
         <div class="other-games-container">
         <div class="main-games-text">OTHER GAMES</div>
             <div class="game" id="game-3">
-                <div class="team-1-name">Team 1</div>
-                <div class="team-2-name">Team 2</div>
+                <div class="team-1-container"><div class="team-1-name">Team 1</div></div>
+                <div class="team-2-container"><div class="team-2-name">Team 2</div></div>
                 <button class="bet-button">Bet</button>
             </div>
         </div>
@@ -64,7 +79,6 @@
         $num_row = mysqli_num_rows($result);
 
         echo "<table class='top-scorers-table'>";
-        
         echo "        <tr>";
         echo "           <th>Username</th>";
         echo "            <th>Score</th>";
