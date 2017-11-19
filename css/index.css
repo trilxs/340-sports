@@ -1,22 +1,24 @@
 * {
     margin: 0;
+    text-rendering: optimizeLegibility;
     padding: 0;
     font-family: 'Source Sans Pro', sans-serif;
 }
 
 html {
-    background: linear-gradient(135deg,
-        rgb(36, 36, 36) 0%,
-        rgb(32, 32, 32) 100%);
+    background-image: url("../img/bg-image-blur.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 10000px;
 }
 
 .bg-image-container {
     position: relative;
-    background-image: url("../img/bg-image-blur.jpg");
+    background-image: url("../img/bg-image.jpg");
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: 1400px;
-    height: 300px;
+    height: 350px;
 }
 
 .page-title {
@@ -24,21 +26,19 @@ html {
     bottom: 0;
     padding-left: 20px;
     font-size: 80px;
-    color: white;   
+    color: white;  
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.47); 
 }
 
 .header {
     width: 100%;
     line-height: 45px;
-    height: 45px;
+    height: 40px;
     background-color: #3A3A3A;
     overflow: hidden;
-    background: -webkit-linear-gradient(#3A3A3A, #292828); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#3A3A3A, #292828); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#3A3A3A, #292828); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#3A3A3A, #292828); /* Standard syntax */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    animation: float 5s infinite;
 }
-
 
 .header ul a {
     width: 100px;
@@ -46,42 +46,51 @@ html {
 }
 
 .header-button:hover {
-    background-color: #686868;
+    background-color: #4E5066;
 }
 
 /* All links in the header have this style */
 .header-button {
-    padding: 0px 40px 15px;
+    padding: 0px 20px 15px;
     text-decoration:none;
-    transition: all 0.3s ease-in-out;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
 }
 
 .header-title { 
-    font-family: "Gill Sans MT";
     color: white;
-    font-size: 40px;
-    padding-left: 260px;
+    font-size: 25px;
+    padding-left: 290px;
     cursor: pointer;
     font-style: italic;
     font-weight: bold;
 }
 
 .header-button {
-    padding: 0px 40px 15px;
+    padding: 0px 30px 15px;
     color: white;
     text-decoration:none;
-    font-size: 20px;
+    font-size: 15px;
     margin-top: 0;
     float: right;
+}
+
+#h-btn1 {
+    margin-right: 260px;
 }
 
 .content-container {
     background: #E0E0E0;
     margin: auto;
     width: 1400px;
-    height: 1000px;
+    height: fit-content;
+}
+
+.game-container {
+    position:relative;
+    width: 845px;
+}
+
+.body-container {
+    position:relative;
 }
 
 nav {
@@ -92,17 +101,16 @@ nav {
 }
 
 .top-scorers-title {
-    display: inline-block;
-    float: right;
-    padding: 0 240px 0 240px;
-    background: orange;
+    padding: 0 234px 0 234px;
+    background: linear-gradient(135deg,
+        rgb(245, 117, 159) 0%,
+        rgb(255, 155, 62) 100%);
+    font-size: 18px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); 
+    color: white;
+    float:right;
 }
 
-/* still need to work on this container */
-.top-scorers-container {
-    width: 500px;
-    background: grey;
-}
 
 nav ul a {
     width: 100px;
@@ -113,22 +121,311 @@ nav ul li {
     display: inline-block;
 }
 nav ul li a:hover {
-    border-bottom: 2px solid orange;
+    border-bottom: 2px solid rgb(255, 212, 193);
 }
 
 /* All links in the header have this style */
 nav ul li a {
-    padding: 0px 40px 15px;
+    padding: 0px 40px 13px;
     text-decoration:none;
     transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
 }
 
+
+.top-scorers-container {
+    position: absolute;
+    margin-left: 847px;
+    display:inline-block;
+    top:0;
+    left:0;
+    background:#414141;
+    min-height: 100%; /*make more dynamic later*/
+}
+
+/* table properties */
+
+.top-scorers-table {
+  width:553px;
+  border-collapse: collapse;
+  padding:10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+
+.top-scorers-table th {
+    color:#D5DDE5;;
+    background:#1b1e24;
+    border-bottom:4px solid #777777;
+    border-right: 1px solid #343a45;
+    font-size:18px;
+    font-weight: 100;
+    padding:12px;
+    text-align:left;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    vertical-align:middle;
+  }
+  .top-scorers-table  th:first-child {
+    border-top-left-radius:3px;
+  }
+   
+  .top-scorers-table th:last-child {
+    border-top-right-radius:3px;
+    border-right:none;
+  }
+
+   
+  .top-scorers-table tr {
+    border-top: 1px solid #353535;
+    border-bottom: 1px solid #353535;
+    color:#D5D9EB;
+    font-size:14px;
+    font-weight:normal;
+    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+  }
+   
+  .top-scorers-table tr:hover td {
+    background:#4A4B57;
+    color:#FFFFFF;
+    border-top: 1px solid #22262e;
+  }
+   
+  .top-scorers-table tr:first-child {
+    border-top:none;
+  }
+  
+  .top-scorers-table tr:last-child {
+    border-bottom:none;
+  }
+   
+  .top-scorers-table tr:nth-child(odd) td {
+    background:#3A3A3A;
+  }
+   
+  .top-scorers-table tr:nth-child(odd):hover td {
+    background:#4E5066;
+  }
+  
+  .top-scorers-table tr:last-child td:first-child {
+    border-bottom-left-radius:3px;
+  }
+   
+  .top-scorers-table tr:last-child td:last-child {
+    border-bottom-right-radius:3px;
+  }
+   
+  .top-scorers-table td {
+    background:#414141;
+    padding:20px;
+    text-align:left;
+    vertical-align:middle;
+    font-weight:300;
+    font-size:16px;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #302E2E;
+  }
+  
+  .top-scorers-table td:last-child {
+    border-right: 0px;
+  }
+  
+  .top-scorers-table th.text-left {
+    text-align: left;
+  }
+  
+  .top-scorers-table th.text-center {
+    text-align: center;
+  }
+  
+  .top-scorers-table th.text-right {
+    text-align: right;
+  }
+  
+  .top-scorers-table td.text-left {
+    text-align: left;
+  }
+  
+  .top-scorers-table td.text-center {
+    text-align: center;
+  }
+  
+  .top-scorers-table td.text-right {
+    text-align: right;
+  }
+  
+  /* game container content (left side of home page) */
+
 .main-games-text { 
     font-weight: bold;
     padding-top: 20px;
     padding-left: 100px;
     font-size: 50px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); 
     color: #8F8F8F;
 }
+
+.game {
+    position: relative;
+    padding-left: 120px;
+    width: 700px;
+    height: fit-content;
+    background: linear-gradient(135deg,
+        rgb(65, 65, 65) 0%,
+        rgb(63, 63, 63) 100%);
+transition: opacity .3s;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in;
+    transition-delay: .2s;  
+    border-radius:3px;
+    border-collapse: collapse;
+    margin: auto;
+    margin-top: 25px!important;
+    margin-bottom:25px!important;
+    padding:5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    animation: float 5s infinite;
+}
+
+.game-table {
+    width:555px;
+    height: 150px;
+    border-collapse: collapse;
+    padding:10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    animation: float 5s infinite;
+  }
+  
+  .game-table th {
+      color:#D5DDE5;;
+      background:#1b1e24;
+      border-right: 1px solid #343a45;
+      font-size:18px;
+      font-weight: 100;
+      padding:12px;
+      text-align:left;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      vertical-align:middle;
+      text-align: center;
+    }
+    .top-scorers-table  th:first-child {
+      border-top-left-radius:3px;
+    }
+     
+    .top-scorers-table th:last-child {
+      border-top-right-radius:3px;
+      border-right:none;
+    }
+  
+     
+    .game-table tr {
+      border-top: 1px solid #353535;
+      border-bottom: 1px solid #353535;
+      color:#D5D9EB;
+      font-size:14px;
+      font-weight:normal;
+      text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+    }
+     
+    .game-table tr:hover td {
+      background:#E74C4C;
+      color:#FFFFFF;
+    }
+     
+    .game-table tr:first-child {
+      border-top:none;
+    }
+    
+    .game-table tr:last-child {
+      border-bottom:none;
+    }
+     
+    .game-table tr:nth-child(odd) td {
+      background:#3A3A3A;
+    }
+     
+    .game-table tr:nth-child(odd):hover td {
+      background:#4C59E7;
+    }
+    
+    
+    .game-table tr:last-child td:first-child {
+      border-bottom-left-radius:3px;
+    }
+     
+    .game-table tr:last-child td:last-child {
+      border-bottom-right-radius:3px;
+    }
+     
+    .game-table td {
+      background:#414141;
+      padding:20px;
+      text-align:left;
+      vertical-align:middle;
+      font-weight:300;
+      font-size:16px;
+      text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+      border-right: 1px solid #3D3B3B;
+    }
+    
+    .game-table td:last-child {
+      border-right: 0px;
+    }
+    
+    .game-table th.text-left {
+      text-align: left;
+    }
+    
+    .game-table th.text-center {
+      text-align: center;
+    }
+    
+    .game-table th.text-right {
+      text-align: right;
+    }
+    
+    .game-table td.text-left {
+      text-align: left;
+    }
+    
+    .game-table td.text-center {
+      text-align: center;
+    }
+    
+    .game-table td.text-right {
+      text-align: right;
+    }
+    
+    .bet-container {
+        position: absolute;
+        top:0; right: 0;
+        width: 150px; height: 160px;
+        color: white;
+        font-size: 20px;
+        text-align: center;
+        padding-top: 42px;
+    }
+
+
+    .bet-amount {
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .more-games-button {
+        text-decoration: none;
+        color: grey;
+        font-size: 18px;
+        margin-left: 170px; 
+        background:none!important;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+
+    }
+
+    .more-games-button:hover {
+        color: #ACACAC;
+    }
