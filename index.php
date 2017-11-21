@@ -93,14 +93,28 @@
 
         <div class="other-games-container">
         <div class="main-games-text">OTHER GAMES</div>
-            <div class="game" id="game-3">
-                <div class="team-1-container"><div class="team-1-name">Team 1</div></div>
-                <div class="team-2-container"><div class="team-2-name">Team 2</div></div>
-                <button class="bet-button">Bet</button>
+           <div class="game" id="game-1">
+                <table class="game-table">
+                    <tr class="team-1-container">
+                        <th class="team-1-image">IMAGE</th>
+                        <td class="team-1-name">Team 1</td>
+                        <td class="team-1-score">3</td>
+                    </tr>
+                    <tr class="team-2-container">
+                        <th class="team-2-image">IMAGE</th>
+                        <td class="team-2-name">Team 2</td>
+                        <td class="team-2-score">4</td>
+                    </tr>
+                </table>
+                <span class="bet-container">
+                    <div class="bet-text" style="display:none;">Your bet was </div>
+                    <div class="bet-amount" style="display:none;">342 coins</div>
+                    <button class="bet-button" style="">Bet</button>
+                </span>
             </div>
         </div>
-    </div>
-    <div class="top-scorers-container">
+        </div>
+        <div class="top-scorers-container">
     <?php
     // include global connection variables
         include 'connectvarsEECS.php'; 
@@ -112,11 +126,10 @@
         }
 
     // Query the database for names of all tables	
-        $result = mysqli_query($conn, "SELECT username, currencyAmount FROM topScorers ORDER BY currencyAmount DESC");
+        $result = mysqli_query($conn, "SELECT username, currencyAmount FROM accounts ORDER BY currencyAmount DESC");
         if (!$result) {
             die("Query to show fields from table failed");
         }
-        $num_row = mysqli_num_rows($result);
 
         echo "<table class='top-scorers-table'>";
         echo "        <tr>";
@@ -138,6 +151,8 @@
     </div>
   <script src="js/scripts.js"></script>
 </div>
+    </div>
+
 </div>   
 </html>
 
