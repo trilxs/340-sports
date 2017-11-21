@@ -5,7 +5,8 @@ session_start();
   include 'connectvarsEECS.php';
 
   function generateID(){
-    return uniqid(rand());
+      $a = mt_rand(100000,999999);
+      return $a;
   }
 
   function generateRandomSalt(){
@@ -15,7 +16,7 @@ session_start();
 
   if ($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($_POST["username"]) || empty($_POST["firstName"]) || empty($_POST["lastName"]) || empty($_POST["email"]) || empty($_POST["age"]) || empty($_POST["password"])){
-      $errorMessage = "Please do not leave any field blank.";
+      $errorMessage = "<script> alert('Please do not leave any fields blank!')</script>";
       echo $errorMessage;
     }
     else{
@@ -24,6 +25,8 @@ session_start();
         die('Could not connect: ' . mysql_error());
       }
 
+    if (isset($_POST['submit-button'])) {
+    // btnDelete
       $userID = generateID();
       $currencyAmount = 10000;
       $username = mysqli_escape_string($conn,$_POST["username"]);
@@ -36,11 +39,13 @@ session_start();
 
       $query = "INSERT INTO accounts(userID, password, email, currencyAmount, username, firstName, lastName, middleName, age, salt) VALUES('$userID', MD5('$password$salt'), '$email', '$currencyAmount', '$username', '$firstName', '$lastName', '$middleName', '$age', '$salt')";
       if(mysqli_query($conn, $query)){
-        echo "Success, account has been registered";
+       echo "<script type='text/javascript'> document.location = 'success.php'; </script>";
       }
       else{
-        echo "Error: could not register. Try again" . mysqli_error($conn);
+          $errorMessage = mysqli_error($conn);
+          echo "<script>alert('Unable to register!')</script>"; 
       }
+    }
       mysqli_close($conn);
     }
   }
@@ -51,22 +56,24 @@ session_start();
 <html>
 <head>
   <title>Register</title>
-  <link rel = "stylesheet" href = "./css/signUp.css">
+  <link rel = "stylesheet" href = "./css/signup.css">
 </head>
 
   <div class = "white-box">
     <h1>Register an account</h1>
     <div class = "inner-body">
       <body>
-        <form action="success.php" method="post"><br>
-          Username: <input type="text" name="username"><br>
-          First name: <input type="text" name="firstName"><br>
-          Last name: <input type="text" name="lastName"><br>
-          Email: <input type="text" name="email"><br>
-          Age: <input type="text" name="age"><br>
-          Password: <input type="text" name="password"><br>
+        <form method="post"><br>
+            <div class="submit-info-container">
+              <label>Username: </label><input type="text" name="username"><br>
+              <label>First name: </label><input type="text" name="firstName"><br>
+              <label>Last name: </label><input type="text" name="lastName"><br>
+              <label>Email: </label><input type="text" name="email"><br>
+              <label>Age: </label><input type="text" name="age"><br>
+              <label>Password: </label><input type="password" name="password"><br>
+            </div>
           <div class = "submit-button-container">
-            <input class ="submit-button" type="submit">
+            <input name = "submit-button" class ="submit-button" type="submit">
           </div>
 
         </form>

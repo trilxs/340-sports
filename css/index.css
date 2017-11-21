@@ -79,13 +79,13 @@ html {
 }
 
 .content-container {
-    background: #E0E0E0;
     margin: auto;
     width: 1400px;
     height: fit-content;
 }
 
 .game-container {
+    background: rgba(255,255,255,0.7);
     position:relative;
     width: 845px;
 }
@@ -261,8 +261,7 @@ nav ul li a {
     font-weight: bold;
     padding-top: 20px;
     padding-left: 100px;
-    font-size: 50px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); 
+    font-size: 50px; 
     color: #8F8F8F;
 }
 
@@ -429,4 +428,33 @@ transition: opacity .3s;
 
     .more-games-button:hover {
         color: #ACACAC;
+    }
+
+    .bet-button {
+      margin-top:15px;
+      text-decoration: none;
+      outline: none;
+      border-radius: 5px;
+      background: linear-gradient(135deg,
+          rgb(245, 117, 159) 0%,
+          rgb(255, 155, 62) 100%);
+      border: none;
+      width: 100px;
+      height: 50px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;  
+      -o-transition:.2s;
+      -ms-transition:.2s;
+      -moz-transition:.2s;
+      -webkit-transition:.2s;
+      /* ...and now for the proper property */
+      transition:.2s;
+    }
+    
+    .bet-button:hover {
+      color: #4B4BAF;
+      background: linear-gradient(135deg,
+      rgb(255, 178, 111) 0%,
+      rgb(255, 169, 198) 100%);
     }
