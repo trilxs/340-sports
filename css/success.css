@@ -20,14 +20,22 @@ html {
 
 .success-container {
     margin: auto;
-    background-color: #3A3A3A;
+    background-color: #2C2C2C;
+    background: linear-gradient(135deg,
+        rgb(46, 46, 46) 0%,
+        rgb(44, 44, 44) 100%);
     width: 500px;
-    height: 500px;
-    margin-top: 11%!important;
+    height: 300px;
+    border-radius: 25px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    margin-top: 14%!important;
 }
 
 .success-text {
-    color: white;
-    margin: auto;
-    padding: 100px;
+    color: #D5D9EB;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); 
+    animation: float 5s infinite;
+    font-size: 17px;
+    text-align: center;
+    padding: 115px;
 }
