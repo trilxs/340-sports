@@ -49,18 +49,28 @@ session_start();
 
 <!DOCTYPE html>
 <html>
-  <h1>Register an account</h1>
+<head>
+  <title>Register</title>
+  <link rel = "stylesheet" href = "./css/signUp.css">
+</head>
 
-  <body>
-    <form action="success.php" method="post"><br>
-      Username: <input type="text" name="username"><br>
-      First name: <input type="text" name="firstName"><br>
-      Last name: <input type="text" name="lastName"><br>
-      Email: <input type="text" name="email"><br>
-      Age: <input type="text" name="age"><br>
-      Password: <input type="text" name="password"><br>
-      <input type="submit">
+  <div class = "white-box">
+    <h1>Register an account</h1>
+    <div class = "inner-body">
+      <body>
+        <form action="success.php" method="post"><br>
+          Username: <input type="text" name="username"><br>
+          First name: <input type="text" name="firstName"><br>
+          Last name: <input type="text" name="lastName"><br>
+          Email: <input type="text" name="email"><br>
+          Age: <input type="text" name="age"><br>
+          Password: <input type="text" name="password"><br>
+          <div class = "submit-button">
+            <input type="submit">
+          </div>
 
-    </form>
-  </body>
+        </form>
+      </body>
+    </div>
+  </div>
 </html>
