@@ -65,8 +65,8 @@ session_start();
           Email: <input type="text" name="email"><br>
           Age: <input type="text" name="age"><br>
           Password: <input type="text" name="password"><br>
-          <div class = "submit-button">
-            <input type="submit">
+          <div class = "submit-button-container">
+            <input class ="submit-button" type="submit">
           </div>
 
         </form>
