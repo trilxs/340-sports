@@ -89,7 +89,7 @@
                 </span>
             </div>
         </div>
-        <button class="more-games-button">View more...</button>
+<!--        <button class="more-games-button">View more...</button>-->
 
         <div class="other-games-container">
         <div class="main-games-text">OTHER GAMES</div>
