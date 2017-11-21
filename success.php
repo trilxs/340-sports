@@ -19,7 +19,7 @@ function Redirect()
 {  
 window.location="./index.php"; 
 } 
-//setTimeout('Redirect()', 3000);   
+setTimeout('Redirect()', 3000);   
 </script>
 </html>
 
