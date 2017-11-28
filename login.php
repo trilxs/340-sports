@@ -1,55 +1,67 @@
 <?php
-include 'connectvarsEECS.php'
-function login(){
+  // Starts the session to connect to our database
   session_start();
-  $error = '';
-  if (isset($_POST['submit'])) {
-      if (empty($_POST['username']) || empty($_POST['password'])) {
-          $error = "Username or Password is invalid";
-          echo $error;
+  include 'connectvarsEECS.php';
+
+  // If the user doesn't input into either text box, give an error message to them saying that they need to input at least something
+  if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if(empty($_POST["username"]) || empty($_POST["password"])){
+      $errorMessage = "Please do not leave any field blank.";
+      echo $errorMessage;
+    }
+    // If the user inputs something into both text boxes, log into the database to access our users table
+    else{
+      $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+      if(!$conn){
+        die('Could not connect: ' . mysql_error());
       }
-      else {
-          //set user inputs to variables
-          $username = $_POST['username'];
-          $password = $_POST['password'];
 
-          //establish a connection with server
-          $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+      // Puts the entered username and password into variables for us to use to search
+      $username = mysqli_escape_string($conn, $_POST["username"]);
+      $password = mysqli_escape_string($conn, $_POST["password"]);
 
-          if (!$connection) {
-              die("Could not connect to the database: " .mysql_error());
-          }
+      // Puts all the usernames in our table into the variable $query
+      $query = "SELECT * FROM users WHERE username = '$username'";
 
-          //mysql injection
-          $username = stripslashes($username);
-          $password = stripslashes($password);
-          $username = mysqli_real_escape_string($username);
-          $password = mysqli_real_escape_string($password);
+      // Checks to see if we have usernames available
+      $result = mysqli_query($conn, $query);
 
-          //sql query and find the matching information
-          $query = mysqli_query($connection, "SELECT * FROM Users WHERE password='$password' AND username='$username'");
-          $rows = mysqli_num_rows($query);
-          if ($rows == 1) {
-              $_SESSION['login_user'] = $username;
-              header("location:success.php");
-          } else {
-              $error = "Username or Password is invalid";
-              echo $error;
-          }
-          mysqli_close($connection);
+      // Searches the usernames in the table and the inputted one to see if we have a match
+      if($row = mysqli_fetch_assoc($result)){
+        $salt = $row['salt'];
+
+        // Salts the password to the matched username to see if the password is the same
+        $saltSQL = "SELECT * FROM users WHERE username = '$username' && password = MD5('$password$salt')";
+        $finalPW = mysqli_query($conn, $saltSQL);
+        if($finalRow = mysqli_fetch_assoc($finalPW)){
+          echo "Success";
+          return true;
+        }
+        else{
+          echo "Failed login attempt";
+          return false;
+        }
       }
+      else{
+        echo "Failed login attempt";
+        return false;
+      }
+    }
+
   }
-}
 
+  mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Login</title>
-</head>
+  <h1>Login page</h1>
 
-<body>
-  <p>testtest</p>
-</body>
+  <body>
+    <form action="login.php" method="post"><br>
+      Username: <input type="text" name="username"><br>
+      Password: <input type="text" name="password"><br>
+      <input type="submit">
+
+  </body>
 </html>
