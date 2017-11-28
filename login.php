@@ -41,5 +41,15 @@ function login(){
   }
 }
 
+?>
 
-  ?>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+</head>
+
+<body>
+  <p>testtest</p>
+</body>
+</html>
