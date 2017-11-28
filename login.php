@@ -22,6 +22,7 @@
 
       // Puts all the usernames in our table into the variable $query
       $query = "SELECT * FROM users WHERE username = '$username'";
+      echo "username was selected";
 
       // Checks to see if we have usernames available
       $result = mysqli_query($conn, $query);
@@ -31,7 +32,7 @@
         $salt = $row['salt'];
 
         // Salts the password to the matched username to see if the password is the same
-        $saltSQL = "SELECT * FROM users WHERE username = '$username' && password = MD5('$password$salt')";
+        $saltSQL = "SELECT * FROM accounts WHERE username = '$username' && password = MD5('$password$salt')";
         $finalPW = mysqli_query($conn, $saltSQL);
         if($finalRow = mysqli_fetch_assoc($finalPW)){
           echo "Success";
@@ -55,7 +56,11 @@
 
 <!DOCTYPE html>
 <html>
-  <h1>Login page</h1>
+<head>
+  <title>Login</title>
+</head>
+
+  <h1>Login</h1>
 
   <body>
     <form action="login.php" method="post"><br>
