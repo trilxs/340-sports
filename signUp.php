@@ -43,7 +43,7 @@ session_start();
       }
       else{
           $errorMessage = mysqli_error($conn);
-          echo "<script>alert('Unable to register!')</script>"; 
+          echo "<script>alert('Unable to register!')</script>";
       }
     }
       mysqli_close($conn);
@@ -56,7 +56,7 @@ session_start();
 <html>
 <head>
   <title>Register</title>
-  <link rel = "stylesheet" href = "./css/signup.css">
+  <link rel = "stylesheet" href = "./css/signUp.css">
 </head>
 
   <div class = "white-box">
