@@ -35,7 +35,11 @@
           echo "Success ";
         }
       }
+
+
     }
+
+
 ?>
 
 <!doctype html>
@@ -65,6 +69,7 @@
       <body>
         <form method="post"><br>
             <div class="submit-info-container">
+              <label>Old e-mail: </label><input type="text" name="oldemail"><br>
               <label>New e-mail: </label><input type="text" name="newemail"><br>
               <label>Confirm new e-mail: </label><input type="text" name="newemail2"><br>
             </div>
@@ -82,6 +87,7 @@
       <body>
         <form method="post"><br>
             <div class="submit-info-container">
+              <label>Old password: </label><input type="password" name="oldpassword"><br>
               <label>New password: </label><input type="password" name="newpassword"><br>
               <label>Confirm new password: </label><input type="password" name="newpassword2"><br>
             </div>
