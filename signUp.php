@@ -37,7 +37,7 @@ session_start();
       $password = mysqli_escape_string($conn,$_POST["password"]);
       $salt = generateRandomSalt();
 
-      $query = "INSERT INTO accounts(userID, password, email, currencyAmount, username, firstName, lastName, middleName, age, salt) VALUES('$userID', MD5('$password$salt'), '$email', '$currencyAmount', '$username', '$firstName', '$lastName', '$middleName', '$age', '$salt')";
+      $query = "INSERT INTO accounts(userID, password, email, currencyAmount, username, firstName, lastName, middleName, age, salt) VALUES('$userID', MD5('$password'), '$email', '$currencyAmount', '$username', '$firstName', '$lastName', '$middleName', '$age', '$salt')";
       if(mysqli_query($conn, $query)){
        echo "<script type='text/javascript'> document.location = 'success.php'; </script>";
       }
