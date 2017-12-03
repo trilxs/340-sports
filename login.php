@@ -60,7 +60,7 @@ https://stackoverflow.com/questions/29959689/php-login-using-mysql-data-and-hash
   <body>
     <form action="login.php" method="post"><br>
       Username: <input type="text" name="username"><br>
-      Password: <input type="text" name="password"><br>
+      Password: <input type="password" name="password"><br>
       <input type="submit">
 
   </body>
