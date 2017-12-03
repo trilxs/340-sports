@@ -1,3 +1,43 @@
+<?php
+
+  session_start();
+  $userID = $_SESSION['userID'];
+
+  include 'connectvarsEECS.php';
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+      $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+      if(!$conn){
+        die('Could not connect: ' . mysql_error());
+      }
+
+      $newemail1 = mysqli_escape_string($conn, $_POST["newemail"]);
+      $newemail2 = mysqli_escape_string($conn, $_POST["newemail2"]);
+      if($newemail1 != $newemail2){
+        echo "Error, email's do not match";
+      }
+      else{
+        $sql = "UPDATE accounts SET email = '$newemail1' WHERE userID = $userID";
+        if(mysqli_query($conn, $sql)){
+          echo "Success ";
+        }
+      }
+
+      $pass = mysqli_escape_string($conn, $_POST["newpassword"]);
+      $pass2 = mysqli_escape_string($conn, $_POST["newpassword2"]);
+      if($pass != $pass2){
+        echo "Error, passwords's do not match";
+      }
+      else{
+        $sql = "UPDATE accounts SET password = MD5('$pass') WHERE userID = $userID";
+        if(mysqli_query($conn, $sql)){
+          echo "Success ";
+        }
+      }
+    }
+?>
+
 <!doctype html>
 
 <head>
@@ -25,7 +65,6 @@
       <body>
         <form method="post"><br>
             <div class="submit-info-container">
-              <label>Old e-mail: </label><input type="text" name="oldemail"><br>
               <label>New e-mail: </label><input type="text" name="newemail"><br>
               <label>Confirm new e-mail: </label><input type="text" name="newemail2"><br>
             </div>
@@ -43,7 +82,6 @@
       <body>
         <form method="post"><br>
             <div class="submit-info-container">
-              <label>Old password: </label><input type="password" name="oldpassword"><br>
               <label>New password: </label><input type="password" name="newpassword"><br>
               <label>Confirm new password: </label><input type="password" name="newpassword2"><br>
             </div>
@@ -56,7 +94,7 @@
     </div>
     </div>
     </div>
-   
+
 </div>
     </div>
 
