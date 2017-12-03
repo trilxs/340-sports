@@ -12,27 +12,42 @@
         die('Could not connect: ' . mysql_error());
       }
 
+      $oldmail = mysqli_escape_string($conn, $_POST["oldemail"]);
       $newemail1 = mysqli_escape_string($conn, $_POST["newemail"]);
       $newemail2 = mysqli_escape_string($conn, $_POST["newemail2"]);
-      if($newemail1 != $newemail2){
-        echo "Error, email's do not match";
-      }
-      else{
-        $sql = "UPDATE accounts SET email = '$newemail1' WHERE userID = $userID";
-        if(mysqli_query($conn, $sql)){
-          echo "Success ";
+      if(isset($oldmail)){
+        if($newemail1 != $newemail2){
+        }
+        else{
+          $sql = "UPDATE accounts SET email = '$newemail1' WHERE userID = $userID AND email = '$oldmail'";
+          if(mysqli_query($conn, $sql)){
+            $message = "Successfully updated the email!";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+          }
+          else{
+            $message = "Error, try again!";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+          }
         }
       }
 
+      $oldpass = mysqli_escape_string($conn, $_POST["oldpassword"]);
       $pass = mysqli_escape_string($conn, $_POST["newpassword"]);
       $pass2 = mysqli_escape_string($conn, $_POST["newpassword2"]);
-      if($pass != $pass2){
-        echo "Error, passwords's do not match";
-      }
-      else{
-        $sql = "UPDATE accounts SET password = MD5('$pass') WHERE userID = $userID";
-        if(mysqli_query($conn, $sql)){
-          echo "Success ";
+      if(!empty($oldpass)){
+        if($pass != $pass2){
+          echo "Error, passwords's do not match";
+        }
+        else{
+          $sql = "UPDATE accounts SET password = MD5('$pass') WHERE userID = $userID AND password = MD5('$oldpass')";
+          if(mysqli_query($conn, $sql)){
+            $message = "Successfully updated the password!";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+          }
+          else{
+            $message = "Error, try again!";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+          }
         }
       }
 
