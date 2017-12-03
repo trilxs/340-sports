@@ -1,3 +1,20 @@
+<?php
+
+  session_start();
+  $userID = $_SESSION['userID'];
+
+  include 'connectvarsEECS.php';
+
+  // establish connection
+    $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+    if (!$conn) {
+        die('Could not connect: ' . mysqli_error());
+    }
+
+  echo
+
+?>
+
 <!doctype html>
 
 <head>
@@ -56,7 +73,7 @@
     </div>
     </div>
     </div>
-   
+
 </div>
     </div>
 
