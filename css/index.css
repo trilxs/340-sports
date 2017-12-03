@@ -34,7 +34,7 @@ html {
 .header {
     width: 100%;
     line-height: 45px;
-    height: 40px;
+    height: 50px;
     background-color: #3A3A3A;
     overflow: hidden;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -46,14 +46,27 @@ html {
     color: #FFFFFF;
 }
 
-.header-button:hover {
-    background-color: #4E5066;
+.header-button img:hover {
+    
+	filter: invert(100%);
 }
 
+.header-button img {
+
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+	filter: invert(0%);
+}
 /* All links in the header have this style */
 .header-button {
-    padding: 0px 20px 15px;
+      color: white;
+    padding-top: 5px!important;
     text-decoration:none;
+    margin-right: 220px;
+    font-size: 15px;
+    margin-top: 0;
+    float: right;
 }
 
 .header-title { 
@@ -63,19 +76,6 @@ html {
     cursor: pointer;
     font-style: italic;
     font-weight: bold;
-}
-
-.header-button {
-    padding: 0px 30px 15px;
-    color: white;
-    text-decoration:none;
-    font-size: 15px;
-    margin-top: 0;
-    float: right;
-}
-
-#h-btn1 {
-    margin-right: 260px;
 }
 
 .content-container {
@@ -269,8 +269,8 @@ nav ul li a {
 .main-games-text { 
     font-weight: bold;
     padding-top: 20px;
-    padding-left: 100px;
-    font-size: 50px; 
+    padding-left: 30px;
+    font-size: 40px; 
     color: #8F8F8F;
 }
 
@@ -428,7 +428,7 @@ transition: opacity .3s;
 
     .bet-amount {
         text-align: center;
-        font-size: 30px;
+        font-size: 25px;
         font-weight: bold;
     }
 
@@ -486,4 +486,16 @@ transition: opacity .3s;
      text-align: center;
      font-weight: bold;
      font-size: 15px;
+   }
+
+   .no-games {
+     font-size: 20px;
+     padding-top:20px;
+     text-align:center;
+   }
+
+   .no-prev-games {
+     text-align:center;
+     padding-top: 250px;
+     font-size: 20px;
    }
