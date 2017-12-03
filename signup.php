@@ -1,9 +1,6 @@
-<!-- Register into database -->
-
 <?php
 session_start();
   include 'connectvarsEECS.php';
-
   function generateID(){
       $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
       if (!$conn) {
@@ -25,12 +22,9 @@ session_start();
       mysqli_free_result($result);
       return $new_id;
   }
-
   function generateRandomSalt(){
      return base64_encode(mcrypt_create_iv(12, MCRYPT_DEV_URANDOM));
   }
-
-
   if ($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($_POST["username"]) || empty($_POST["firstName"]) || empty($_POST["lastName"]) || empty($_POST["email"]) || empty($_POST["age"]) || empty($_POST["password"])){
       $errorMessage = "<script> alert('Please do not leave any fields blank!')</script>";
@@ -41,7 +35,6 @@ session_start();
       if (!$conn) {
         die('Could not connect: ' . mysql_error());
       }
-
     if (isset($_POST['submit-button'])) {
     // btnDelete
       $userID = generateID();
@@ -53,7 +46,6 @@ session_start();
       $age = mysqli_escape_string($conn,$_POST["age"]);
       $password = mysqli_escape_string($conn,$_POST["password"]);
       $salt = generateRandomSalt();
-
       $query = "INSERT INTO accounts(userID, password, email, currencyAmount, username, firstName, lastName, middleName, age, salt) VALUES('$userID', MD5('$password$salt'), '$email', '$currencyAmount', '$username', '$firstName', '$lastName', '$middleName', '$age', '$salt')";
       if(mysqli_query($conn, $query)){
        echo "<script type='text/javascript'> document.location = 'success.php'; </script>";
@@ -66,7 +58,6 @@ session_start();
       mysqli_close($conn);
     }
   }
-
 ?>
 
 <!DOCTYPE html>

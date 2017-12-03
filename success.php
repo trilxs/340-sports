@@ -9,7 +9,7 @@
     <div class="success-container">
         <div class="success-text">
             You have registered successfully!
-            You will be redirected to the home page in 3 seconds...
+            You will be redirected to the login page in 3 seconds...
         </div>
     </div>
 </div>
@@ -19,7 +19,7 @@
 <script type="text/javascript">   
 function Redirect() 
 {  
-window.location="./index.php"; 
+window.location="./login.php"; 
 } 
 setTimeout('Redirect()', 3000);   
 </script>
