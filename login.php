@@ -53,15 +53,23 @@ https://stackoverflow.com/questions/29959689/php-login-using-mysql-data-and-hash
 <html>
 <head>
   <title>Login</title>
+  <link rel = "stylesheet" href = "./css/login.css">
 </head>
 
-  <h1>Login</h1>
-
-  <body>
-    <form action="login.php" method="post"><br>
-      Username: <input type="text" name="username"><br>
-      Password: <input type="password" name="password"><br>
-      <input type="submit">
-
-  </body>
+  <div class = "white-box">
+    <h1>Login</h1>
+    <div class = "inner-body">
+      <body>
+        <form action="login.php" method="post"><br>
+          <div class = "submit-login-info">
+            <label>Username: </label><input type="text" name="username"><br>
+            <label>Password: </label><input type="password" name="password"><br>
+          </div>
+          <div class = "submit-button-container">
+            <input name = "submit-button" class = "submit-button" type = "submit">
+          </div>
+        </form>
+      </body>
+    </div>
+  </div>
 </html>
