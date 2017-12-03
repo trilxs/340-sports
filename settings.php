@@ -5,13 +5,41 @@
 
   include 'connectvarsEECS.php';
 
-  // establish connection
-    $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-    if (!$conn) {
-        die('Could not connect: ' . mysqli_error());
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+      $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+      if(!$conn){
+        die('Could not connect: ' . mysql_error());
+      }
+
+      $newemail1 = mysqli_escape_string($conn, $_POST["newemail"]);
+      $newemail2 = mysqli_escape_string($conn, $_POST["newemail2"]);
+      if($newemail1 != $newemail2){
+        echo "Error, email's do not match";
+      }
+      else{
+        $sql = "UPDATE accounts SET email = '$newemail1' WHERE userID = $userID";
+        if(mysqli_query($conn, $sql)){
+          echo "Success ";
+        }
+      }
+
+      $oldpass = mysqli_escape_string($conn, $_POST["oldpassword"]);
+      $pass = mysqli_escape_string($conn, $_POST["newpassword"]);
+      $pass2 = mysqli_escape_string($conn, $_POST["newpassword2"]);
+      if($pass != $pass2){
+        echo "Error, passwords's do not match";
+      }
+      else{
+        $sql = "UPDATE accounts SET password = MD5('$pass') WHERE userID = $userID";
+        if(mysqli_query($conn, $sql)){
+          echo "Success ";
+        }
+      }
+
+
     }
 
-  echo
 
 ?>
 
