@@ -1,7 +1,10 @@
 <?php
-  // Starts the session to connect to our database
+  /* Starts the session to connect to our database*/
   session_start();
+
+  /* Includes file to connect to the database*/
   include 'connectvarsEECS.php';
+
   // If the user doesn't input into either text box, give an error message to them saying that they need to input at least something
   if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(empty($_POST["username"]) || empty($_POST["password"])){
@@ -18,13 +21,15 @@
       $username = mysqli_escape_string($conn, $_POST["username"]);
       $password = mysqli_escape_string($conn, $_POST["password"]);
       $md5Pass = substr(MD5($password), 0, 16);
-      $sql = "SELECT userID FROM accounts WHERE username = '$username' and password = '$md5Pass'";
+      $sql = "SELECT userID FROM accounts WHERE username = '$username' AND password = '$md5Pass' LIMIT 1";
       $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
       $active = $row['active'];
       $count = mysqli_num_rows($result);
       if($count==1){
-        echo "Login successful";
+        $userID = $row['userID'];
+        $_SESSION['userID'] = $userID;
+        echo "<script type = 'text/javascript'> document.location = 'index.php'; </script>";
       }
       else{
         echo "Error, invalid login";
