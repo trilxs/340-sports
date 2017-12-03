@@ -130,7 +130,6 @@
     request.done(function (response, textStatus, jqXHR){
         // Log a message to the console
         if(response[0] == 1) {
-            alert(response);
             var betResult = document.getElementById('bet-success');
             betResult.style.display='block';
             betForm.style.display='none';

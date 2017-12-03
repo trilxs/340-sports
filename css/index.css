@@ -35,7 +35,7 @@ html {
     width: 100%;
     line-height: 45px;
     height: 50px;
-    background-color: #3A3A3A;
+    background-color: #1B1B1B;
     overflow: hidden;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     animation: float 5s infinite;
@@ -48,7 +48,7 @@ html {
 
 .header-button img:hover {
     
-	filter: invert(100%);
+	filter: invert(80%);
 }
 
 .header-button img {
@@ -56,7 +56,7 @@ html {
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
-	filter: invert(0%);
+	filter: invert(100%);
 }
 /* All links in the header have this style */
 .header-button {

@@ -7,10 +7,10 @@
             die('Could not connect: ' . mysqli_error());
         }
 
-session_start();
-$userID = $_SESSION['userID'];
+        session_start();
+        $userID = $_SESSION['userID'];
     // Query the database for names of all tables
-        $sql_var = "SELECT game.isLive, game.teamAScore, game.teamBScore, a.teamName, b.teamName, gameBets.userID, gameBets.betAmount FROM gameBets, game, team a, team b WHERE game.teamAID = a.teamID AND game.teamBID = b.teamID";
+        $sql_var = "SELECT game.isLive, game.teamAScore, game.teamBScore, a.teamName, b.teamName, gameBets.userID, gameBets.betAmount, gameBets.gameID, game.gameID FROM gameBets, game, team a, team b WHERE game.teamAID = a.teamID AND game.teamBID = b.teamID AND gameBets.gameID = game.gameID";
         $result = mysqli_query($conn, $sql_var);
         if (!$result) {
             die("Query to show fields from table failed");
