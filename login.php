@@ -29,7 +29,6 @@
       else{
         echo "Error, invalid login";
       }
-      echo "Password is $md5Pass";
     }
   }
   mysqli_close($conn);
