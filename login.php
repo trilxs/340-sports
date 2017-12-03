@@ -1,3 +1,10 @@
+<!--
+Login not working correctly.
+
+Use this for login help:
+https://stackoverflow.com/questions/29959689/php-login-using-mysql-data-and-hashed-password
+ -->
+
 <?php
   // Starts the session to connect to our database
   session_start();
@@ -19,34 +26,22 @@
       // Puts the entered username and password into variables for us to use to search
       $username = mysqli_escape_string($conn, $_POST["username"]);
       $password = mysqli_escape_string($conn, $_POST["password"]);
+      $md5Pass = substr(MD5($password), 0, 16);
 
-      // Puts all the usernames in our table into the variable $query
-      $query = "SELECT * FROM users WHERE username = '$username'";
-      echo "username was selected";
+      $sql = "SELECT userID FROM accounts WHERE username = '$username' and password = '$md5Pass'";
+      $result = mysqli_query($conn, $sql);
+      $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+      $active = $row['active'];
 
-      // Checks to see if we have usernames available
-      $result = mysqli_query($conn, $query);
+      $count = mysqli_num_rows($result);
 
-      // Searches the usernames in the table and the inputted one to see if we have a match
-      if($row = mysqli_fetch_assoc($result)){
-        $salt = $row['salt'];
-
-        // Salts the password to the matched username to see if the password is the same
-        $saltSQL = "SELECT * FROM accounts WHERE username = '$username' && password = MD5('$password$salt')";
-        $finalPW = mysqli_query($conn, $saltSQL);
-        if($finalRow = mysqli_fetch_assoc($finalPW)){
-          echo "Success";
-          return true;
-        }
-        else{
-          echo "Failed login attempt";
-          return false;
-        }
+      if($count==1){
+        echo "Login successful";
       }
       else{
-        echo "Failed login attempt";
-        return false;
+        echo "Error, invalid login";
       }
+      echo "Password is $md5Pass";
     }
 
   }
