@@ -14,7 +14,7 @@ session_start();
       do {
       $good_num = 1;
       $new_id = mt_rand(100000,999999);
-      while($row = mysqli_fetch_row($result)) 
+      while($row = mysqli_fetch_row($result))
             if ($row[0] === $new_id) {
                 good_num===0;
             }
@@ -46,13 +46,13 @@ session_start();
       $age = mysqli_escape_string($conn,$_POST["age"]);
       $password = mysqli_escape_string($conn,$_POST["password"]);
       $salt = generateRandomSalt();
-      $query = "INSERT INTO accounts(userID, password, email, currencyAmount, username, firstName, lastName, middleName, age, salt) VALUES('$userID', MD5('$password$salt'), '$email', '$currencyAmount', '$username', '$firstName', '$lastName', '$middleName', '$age', '$salt')";
+      $query = "INSERT INTO accounts(userID, password, email, currencyAmount, username, firstName, lastName, middleName, age, salt) VALUES('$userID', MD5('$password'), '$email', '$currencyAmount', '$username', '$firstName', '$lastName', '$middleName', '$age', '$salt')";
       if(mysqli_query($conn, $query)){
        echo "<script type='text/javascript'> document.location = 'success.php'; </script>";
       }
       else{
           $errorMessage = mysqli_error($conn);
-          echo "<script>alert('Unable to register!')</script>"; 
+          echo "<script>alert('Unable to register!')</script>";
       }
     }
       mysqli_close($conn);
