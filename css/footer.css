@@ -1,0 +1,56 @@
+ /*footer*/
+ 
+ footer {
+   width: 100%;
+   bottom: 0;
+   height: 70px;
+   background:#292929;
+ }
+
+ .copyright {
+   width: 50%;
+   float: left;
+ }
+
+ p {
+   padding-left: 10%;
+   color: white;
+   font-size: 0.7em;
+   line-height: 70px;
+   text-transform: capitalize;
+   letter-spacing: 1px;
+ }
+ 
+.social {
+    width: 50%;
+    float: right;
+}
+
+.footer-columns {
+    float: left;
+    line-height: 70px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-weight: bold; 
+}
+ 
+ 
+ #support {
+   float:right;
+   background-color: #6dcd9a;
+   font-size: 0.8em;
+   width: 40%;
+ }
+ 
+ #support, #linked, #face, #tweet {   
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+ }
+
+ #support:hover, #linked:hover, #face:hover, #tweet:hover {
+    background: linear-gradient(135deg,
+        rgb(245, 117, 159) 0%,
+        rgb(255, 155, 62) 100%);  
+ }
