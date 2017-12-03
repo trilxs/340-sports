@@ -15,8 +15,8 @@ html {
 
 .white-box {
   width: 500px;
-  height: 400px;
-  margin-top: 10%;
+  height: 300px;
+  margin-top: 13%;
   margin-left: auto;
   margin-right: auto;
 
@@ -29,7 +29,6 @@ html {
 
 .inner-body {
   text-align: center;
-  margin-top: 30px;
   line-height: 150%;
 }
 
@@ -37,11 +36,10 @@ html {
   margin-top: 50px;
   display: block;
   width: 100%;
-  height: 150px;
+  height: 90px;
 }
 
 .submit-button-container {
-  margin-top: 30px;
   border: none;
   color: white;
   padding: 15px 32px;
