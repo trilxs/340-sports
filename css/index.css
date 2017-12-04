@@ -52,8 +52,9 @@ html {
   right: 0;
   top: 0;
 }
+
 .header-button img:hover {
-    
+
 	filter: invert(80%);
 }
 
@@ -122,11 +123,11 @@ nav {
     float:right;
 }
 
-.game-tabs ul {
-  
+.game-tabs ul {  
   display: flex;
   list-style-type: none;
 }
+
 nav ul a {
     width: 100px;
     color: #000000;

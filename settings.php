@@ -12,7 +12,7 @@
       $newemail2 = mysqli_escape_string($conn, $_POST["newemail2"]);
       if(!empty($oldmail)){
         if($newemail1 != $newemail2){
-          $error = "Error, email's do not match";
+          $error = "Error, emails do not match";
           echo "<script type='text/javascript'>alert('$error');</script>";
         }
         else{

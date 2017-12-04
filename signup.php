@@ -50,7 +50,7 @@ session_start();
       if(mysqli_query($conn, $query)){
        echo "<script type='text/javascript'> document.location = 'success.php'; </script>";
       }
-      else{
+      else {
           $errorMessage = mysqli_error($conn);
           echo "<script>alert('Unable to register!')</script>";
       }
@@ -83,8 +83,8 @@ session_start();
           <div class = "submit-button-container">
             <input name = "submit-button" class ="submit-button" type="submit">
           </div>
-
         </form>
+        <div class="login"><a href="login.php">Click here if you already have an account</a></div>
       </body>
     </div>
   </div>

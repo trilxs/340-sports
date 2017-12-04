@@ -59,6 +59,7 @@
             <input name = "submit-button" class = "submit-button" type = "submit">
           </div>
         </form>
+        <div class="signup"><a href="signup.php">Click here to sign up</a></div>
       </body>
     </div>
   </div>
