@@ -12,11 +12,7 @@
       $newemail2 = mysqli_escape_string($conn, $_POST["newemail2"]);
       if(!empty($oldmail)){
         if($newemail1 != $newemail2){
-<<<<<<< HEAD
           $error = "Error, emails do not match";
-=======
-          $error = "Error, email's do not match";
->>>>>>> 9f45dacb0356ab6f38ae6246f170f8b00c81d25e
           echo "<script type='text/javascript'>alert('$error');</script>";
         }
         else{
@@ -26,10 +22,6 @@
           $result = mysqli_query($conn, $compEmail);
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
           $compEmail = $row['email'];
-<<<<<<< HEAD
-=======
-          echo "$compEmail";
->>>>>>> 9f45dacb0356ab6f38ae6246f170f8b00c81d25e
           if($oldmail != $compEmail){
             $message = "Successfully updated the email!";
             echo "<script type='text/javascript'>alert('$message');</script>";
