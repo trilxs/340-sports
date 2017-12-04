@@ -10,7 +10,8 @@
     session_start();
     $userID = $_SESSION['userID'];
     // Query the database for names of all tables
-        $sql_var = "SELECT game.isLive, game.teamAScore, game.teamBScore, a.teamName, b.teamName, gameBets.userID, gameBets.betAmount, game.gameID FROM gameBets, game, team a, team b WHERE game.teamAID = a.teamID AND game.teamBID = b.teamID";
+       /* $sql_var = "SELECT game.isLive, game.teamAScore, game.teamBScore, a.teamName, b.teamName, gameBets.userID, gameBets.betAmount, game.gameID FROM gameBets, game, team a, team b WHERE game.teamAID = a.teamID AND game.teamBID = b.teamID"; */
+        $sql_var = "SELECT game.isLive, game.teamAScore, game.teamBScore, a.teamName, b.teamName, game.gameID FROM game, team a, team b WHERE game.teamAID = a.teamID AND game.teamBID = b.teamID AND game.gameID NOT IN (SELECT gameBets.gameID FROM gameBets WHERE userID = '$userID')";
         $result = mysqli_query($conn, $sql_var);
         if (!$result) {
             die("Query to show fields from table failed");
@@ -19,20 +20,7 @@
 
         $num = 0;
         while($row = mysqli_fetch_row($result)) {
-            $sql_var = "SELECT gameBets.gameID from gameBets WHERE userID = '$userID'";
-
-            $user_games = mysqli_query($conn, $sql_var);
-            if (!$user_games) {
-                die("Query to show fields from table failed");
-            }
-                //team A
-            $has_game = 0;
-            while ($game_row = mysqli_fetch_row($user_games)) { //check all the user's betted games
-                if ($game_row[0] == $row[7]) { // check to see if gameBetsID matches any of these games
-                    $has_game = 1;
-                }
-            }
-            if ($row[0] == 1 && $row[5] != $userID && $has_game == 0) { // if it's live and user hasn't betted yet...
+            if ($row[0] == 1) { // if it's live and user hasn't betted yet...
                 echo "<div class='game' id='game-1'>";
                 echo "<table class='game-table'>";
                 echo "  <tr class='team-1-container'>";
@@ -51,7 +39,7 @@
                 echo "</span>";
                 //bet container form
                 echo "<form class='bet-container-form' id='bet-form'>";
-                echo "    <input type='hidden' name='gameid' value='$row[7]'>";
+                echo "    <input type='hidden' name='gameid' value='$row[5]'>";
                 echo "    <select name='teamname'>";
                 echo "      <option value='$row[3]'>$row[3]</option>";
                 echo "      <option value='$row[4]'>$row[4]</option>";
@@ -60,7 +48,7 @@
                 echo "    <input type='submit' name='submit' class='bet-button' value='Bet'/>";
                 echo "</form></div>";
                 $num++;
-            }
+            } 
         }
 
         if ($num == 0) {

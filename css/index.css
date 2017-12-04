@@ -46,6 +46,12 @@ html {
     color: #FFFFFF;
 }
 
+.currency-amount {
+  z-index:100;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 .header-button img:hover {
     
 	filter: invert(80%);
@@ -491,6 +497,7 @@ transition: opacity .3s;
    .no-games {
      font-size: 20px;
      padding-top:20px;
+     padding-bottom: 50px;
      text-align:center;
    }
 

@@ -11,6 +11,7 @@
 <div class="content-container">
 <div class="bg-image-container">
     <h1 class="page-title">HOME</h1>
+    <h1 class="currency-amount">Current score: </h1>
 </div>
 <nav class="game-tabs">
     <ul>
@@ -130,6 +131,7 @@
     request.done(function (response, textStatus, jqXHR){
         // Log a message to the console
         if(response[0] == 1) {
+            alert(response);
             var betResult = document.getElementById('bet-success');
             betResult.style.display='block';
             betForm.style.display='none';

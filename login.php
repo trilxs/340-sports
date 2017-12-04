@@ -32,7 +32,7 @@
         echo "<script type = 'text/javascript'> document.location = 'index.php'; </script>";
       }
       else{
-        echo "Error, invalid login";
+        echo "<script> alert('Invalid login information!');</script>";
       }
     }
   }
