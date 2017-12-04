@@ -15,17 +15,20 @@
       $oldmail = mysqli_escape_string($conn, $_POST["oldemail"]);
       $newemail1 = mysqli_escape_string($conn, $_POST["newemail"]);
       $newemail2 = mysqli_escape_string($conn, $_POST["newemail2"]);
-      if(isset($oldmail)){
+      if(!empty($oldmail)){
         if($newemail1 != $newemail2){
+          echo "Error, email's do not match";
         }
         else{
           $sql = "UPDATE accounts SET email = '$newemail1' WHERE userID = $userID AND email = '$oldmail'";
-          if(mysqli_query($conn, $sql)){
+          mysqli_query($conn, $sql);
+          $compEmail = "SELECT email FROM accounts WHERE userID = $userID";
+          $result = mysqli_query($conn, $compEmail);
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+          $compEmail = $row['email'];
+          echo "$compEmail";
+          if($oldmail != $compEmail){
             $message = "Successfully updated the email!";
-            echo "<script type='text/javascript'>alert('$message');</script>";
-          }
-          else{
-            $message = "Error, try again!";
             echo "<script type='text/javascript'>alert('$message');</script>";
           }
         }
@@ -36,18 +39,23 @@
       $pass2 = mysqli_escape_string($conn, $_POST["newpassword2"]);
       if(!empty($oldpass)){
         if($pass != $pass2){
-          echo "Error, passwords's do not match";
+          echo "Error, password's do not match";
         }
         else{
           $sql = "UPDATE accounts SET password = MD5('$pass') WHERE userID = $userID AND password = MD5('$oldpass')";
-          if(mysqli_query($conn, $sql)){
-            $message = "Successfully updated the password!";
-            echo "<script type='text/javascript'>alert('$message');</script>";
-          }
-          else{
-            $message = "Error, try again!";
-            echo "<script type='text/javascript'>alert('$message');</script>";
-          }
+          // mysqli_query($conn, $sql)
+          // $compPass = "SELECT password FROM accounts WHERE userID = $userID";
+          // $result = mysqli_query($conn, $compPass);
+          // $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+          // $compPass = $row['password'];
+          // if($oldpass != $compPass){
+          //   $message = "Successfully updated the password!";
+          //   echo "<script type='text/javascript'>alert('$message');</script>";
+          // }
+          // else{
+          //   $message = "Error, try again!";
+          //   echo "<script type='text/javascript'>alert('$message');</script>";
+          // }
         }
       }
 
