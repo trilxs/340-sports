@@ -10,7 +10,6 @@
     session_start();
     $userID = $_SESSION['userID'];
     // Query the database for names of all tables
-       /* $sql_var = "SELECT game.isLive, game.teamAScore, game.teamBScore, a.teamName, b.teamName, gameBets.userID, gameBets.betAmount, game.gameID FROM gameBets, game, team a, team b WHERE game.teamAID = a.teamID AND game.teamBID = b.teamID"; */
         $sql_var = "SELECT game.isLive, game.teamAScore, game.teamBScore, a.teamName, b.teamName, game.gameID FROM game, team a, team b WHERE game.teamAID = a.teamID AND game.teamBID = b.teamID AND game.gameID NOT IN (SELECT gameBets.gameID FROM gameBets WHERE userID = '$userID')";
         $result = mysqli_query($conn, $sql_var);
         if (!$result) {

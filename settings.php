@@ -22,7 +22,6 @@
           $result = mysqli_query($conn, $compEmail);
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
           $compEmail = $row['email'];
-          echo "$compEmail";
           if($oldmail != $compEmail){
             $message = "Successfully updated the email!";
             echo "<script type='text/javascript'>alert('$message');</script>";
@@ -42,14 +41,12 @@
           $row = mysqli_fetch_array($origPass, MYSQLI_ASSOC);
           $origPass = $row['password'];
           $tempPass = substr(MD5($oldpass), 0, 16);
-          echo "$tempPass";
           $sql = "UPDATE accounts SET password = MD5('$pass') WHERE userID = $userID AND password = '$tempPass'";
           mysqli_query($conn, $sql);
           $compPass = mysqli_query($conn, "SELECT password FROM accounts WHERE userID = $userID");
           // $result = mysqli_query($conn, $compPass);
           $row = mysqli_fetch_array($compPass, MYSQLI_ASSOC);
           $compPass = $row['password'];
-          echo "$compPass";
           if($origPass != $compPass){
             $message = "Successfully updated the password!";
             echo "<script type='text/javascript'>alert('$message');</script>";
@@ -69,7 +66,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 
-<?php include("header.html"); ?>
+<?php include("header.php"); ?>
 
 <div class="content-container">
 <div class="bg-image-container">

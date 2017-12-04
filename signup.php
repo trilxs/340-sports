@@ -77,7 +77,7 @@ session_start();
               <label>First name: </label><input type="text" name="firstName"><br>
               <label>Last name: </label><input type="text" name="lastName"><br>
               <label>Email: </label><input type="text" name="email"><br>
-              <label>Age: </label><input type="text" name="age"><br>
+              <label>Age: </label><input type="number" name="age"><br>
               <label>Password: </label><input type="password" name="password"><br>
             </div>
           <div class = "submit-button-container">

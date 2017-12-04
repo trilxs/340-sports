@@ -1,17 +1,23 @@
 <!doctype html>
+<?php 
+    session_start();
 
+    $userID = $_SESSION['userID'];
+    if (empty($userID)) {
+        echo "<script type = 'text/javascript'> document.location = 'login.php'; </script>";
+    }
+?>
 <head>
   <title>Home</title>
   <link rel="stylesheet" href="./css/index.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 
-<?php include("header.html"); ?>
+<?php include("header.php"); ?>
 
 <div class="content-container">
 <div class="bg-image-container">
     <h1 class="page-title">HOME</h1>
-    <h1 class="currency-amount">Current score: </h1>
 </div>
 <nav class="game-tabs">
     <ul>
@@ -37,7 +43,6 @@
     session_start();
 
     $userID = $_SESSION['userID'];
-
     // include global connection variables
         include 'connectvarsEECS.php';
 
@@ -109,7 +114,7 @@
     $('#bet-form').on('submit', function(e) {
     // Prevent form submission by the browser
 
-    e.preventDefault();
+        e.preventDefault();
 
 
         var betForm = document.getElementById('bet-form');
@@ -119,41 +124,32 @@
 
         var serializedData = $form.serialize();
 
+         request = $.ajax({
+              type: "POST",
+              url: "bet.php",
+              data: serializedData
+        });
 
-     $inputs.prop("disabled", true);
-     request = $.ajax({
-      type: "POST",
-      url: "bet.php",
-      data: serializedData
-    });
+        // Callback handler that will be called on success
+        request.done(function (response){
+            // Log a message to the console
+            if(response[0] == 1) {
+                var betResult = document.getElementById('bet-success');
+                betResult.style.display='block';
+                betForm.style.display='none';
+            }
+            else {
+                alert("Invalid input!");
+            }
+        });
 
-    // Callback handler that will be called on success
-    request.done(function (response, textStatus, jqXHR){
-        // Log a message to the console
-        if(response[0] == 1) {
-            alert(response);
-            var betResult = document.getElementById('bet-success');
-            betResult.style.display='block';
-            betForm.style.display='none';
-        }
-        else {
-            alert("Invalid input!");
-        }
-    });
+        // Callback handler that will be called on failure
+        request.fail(function (){
+            // Log the error to the console
+            alert("There was an error while submitting!");
+        });
 
-    // Callback handler that will be called on failure
-    request.fail(function (jqXHR, textStatus, errorThrown){
-        // Log the error to the console
-        alert("There was an error while submitting!");
     });
-
-         // Callback handler that will be called regardless
-    // if the request failed or succeeded
-    request.always(function () {
-        // Reenable the inputs
-        $inputs.prop("disabled", false);
-    });
-});
 
   </script>
 </div>

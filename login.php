@@ -8,8 +8,7 @@
   // If the user doesn't input into either text box, give an error message to them saying that they need to input at least something
   if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(empty($_POST["username"]) || empty($_POST["password"])){
-      $errorMessage = "Please do not leave any field blank.";
-      echo $errorMessage;
+      echo "<script>alert('Please do not leave any field(s) blank.')</script>";
     }
     // If the user inputs something into both text boxes, log into the database to access our users table
     else{

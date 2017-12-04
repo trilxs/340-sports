@@ -10,7 +10,7 @@
         session_start();
         $userID = $_SESSION['userID'];
     // Query the database for names of all tables
-        $sql_var = "SELECT game.isLive, game.teamAScore, game.teamBScore, a.teamName, b.teamName, gameBets.userID, gameBets.betAmount, gameBets.gameID, game.gameID FROM gameBets, game, team a, team b WHERE game.teamAID = a.teamID AND game.teamBID = b.teamID AND gameBets.gameID = game.gameID";
+        $sql_var = "SELECT game.isLive, game.teamAScore, game.teamBScore, a.teamName, b.teamName, gameBets.userID, gameBets.betAmount, gameBets.gameID, game.gameID, gameBets.teamID, game.teamAID, game.teamBID FROM gameBets, game, team a, team b WHERE game.teamAID = a.teamID AND game.teamBID = b.teamID AND gameBets.gameID = game.gameID";
         $result = mysqli_query($conn, $sql_var);
         if (!$result) {
             die("Query to show fields from table failed");
@@ -23,13 +23,21 @@
                 echo "<table class='game-table'>";
                 echo "  <tr class='team-1-container'>";
                 echo "      <th class='team-1-image'>IMAGE</th>";
-                echo "      <td class='team-1-name'>$row[3]</td>"; 
+                if ($row[9] == $row[10]) { 
+                    echo "      <td class='team-1-name' style='color:#8F9AFF;'>$row[3]</td>"; 
+                } else {
+                    echo "      <td class='team-1-name'>$row[3]</td>"; 
+                }
                 echo "      <td class='team-1-score'>$row[1]</td></tr>";
                 
                 //team B
                 echo "  <tr class='team-2-container'>";
                 echo "      <th class='team-2-image'>IMAGE</th>";
-                echo "      <td class='team-2-name'>$row[4]</td>";
+                if ($row[9] == $row[11]) {
+                    echo "      <td class='team-2-name' style='color:#FF7A7A;'>$row[4]</td>";
+                } else {
+                    echo "      <td class='team-2-name'>$row[4]</td>"; 
+                }
                 echo "      <td class='team-2-score'>$row[2]</td></tr></table>";
                
                 //bet container

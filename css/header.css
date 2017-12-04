@@ -1,0 +1,76 @@
+
+.header {
+    width: 100%;
+    line-height: 45px;
+    height: 50px;
+    background-color: #1B1B1B;
+    overflow: hidden;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    animation: float 5s infinite;
+}
+
+.header ul a {
+    width: 100px;
+    color: #FFFFFF;
+}
+
+.currency-amount {
+  z-index:100;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.header-button img:hover {
+	filter: invert(80%);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    top:40px;
+    right:240px;
+    z-index: 10;
+    color: rgb(105, 105, 105);
+  }
+  
+  .dropdown-content div a{
+    color:black;
+    padding:0px;
+  
+  }
+  
+  .header-button:hover .dropdown-content {
+    display: block;
+  }
+  
+  .header-button img {
+  
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+      filter: invert(100%);
+  }
+  /* All links in the header have this style */
+  .header-button {
+        color: white;
+      padding-top: 5px!important;
+      text-decoration:none;
+      margin-right: 220px;
+      font-size: 15px;
+      margin-top: 0;
+      float: right;
+  }
+  
+  .header-title { 
+      color: white;
+      font-size: 25px;
+      padding-left: 290px;
+      cursor: pointer;
+      font-style: italic;
+      font-weight: bold;
+  }
