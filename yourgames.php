@@ -47,7 +47,7 @@
             }
         }
         if ($num == 0) {
-            echo "<div class='no-games'>You are currently not betting on any games.</div>";
+            echo "<div class='no-games'>You are currently not betting on any games. Start betting now by finding a game, <br>picking an amount to bet, and which team to bet on!<br><br>Your score can be found in the account icon on the top right.</div>";
         }
         
         mysqli_free_result($result);

@@ -36,7 +36,7 @@ session_start();
       echo "<script> alert('Invalid email format!')</script>";
     }
     else if (strlen($_POST["password"]) > 16) {
-        echo "<script> alert('Password has to be less than or equal to 16!')</script>";
+        echo "<script> alert('Password has to be less than or equal to 16 characters!')</script>";
     }
     else{
       $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);

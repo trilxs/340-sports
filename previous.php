@@ -1,4 +1,4 @@
- <?php
+<?php
         // include global connection variables
         include 'connectvarsEECS.php'; 
     // establish connection	
@@ -6,7 +6,6 @@
         if (!$conn) {
             die('Could not connect: ' . mysqli_error());
         }
-
     // Query the database for names of all tables
         $sql_var = "SELECT game.isLive, game.teamAScore, game.teamBScore, a.teamName, b.teamName, gameBets.userID, gameBets.betAmount, game.gameID, gameBets.gameID, gameBets.teamID, game.teamAID, game.teamBID FROM gameBets, game, team a, team b WHERE game.teamAID = a.teamID AND game.teamBID = b.teamID AND game.gameID = gameBets.gameID";
         $result = mysqli_query($conn, $sql_var);
