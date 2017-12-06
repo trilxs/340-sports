@@ -16,15 +16,29 @@
           echo "<script type='text/javascript'>alert('$error');</script>";
         }
         else{
-          $sql = "UPDATE accounts SET email = '$newemail1' WHERE userID = $userID AND email = '$oldmail'";
-          mysqli_query($conn, $sql);
-          $compEmail = "SELECT email FROM accounts WHERE userID = $userID";
-          $result = mysqli_query($conn, $compEmail);
+          $checkMail = "SELECT email FROM accounts WHERE userID = $userID";
+          $result = mysqli_query($conn, $checkMail);
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-          $compEmail = $row['email'];
-          if($oldmail != $compEmail){
-            $message = "Successfully updated the email!";
+          $checkMail = $row['email'];
+          if($oldmail != $checkMail){
+            $message = "Error, email was incorrect. Try again.";
             echo "<script type='text/javascript'>alert('$message');</script>";
+          }
+          else{
+            $sql = "UPDATE accounts SET email = '$newemail1' WHERE userID = $userID AND email = '$oldmail'";
+            mysqli_query($conn, $sql);
+            $compEmail = "SELECT email FROM accounts WHERE userID = $userID";
+            $result = mysqli_query($conn, $compEmail);
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            $compEmail = $row['email'];
+            if($oldmail != $compEmail){
+              $message = "Successfully updated the email!";
+              echo "<script type='text/javascript'>alert('$message');</script>";
+            }
+            else{
+              $message = "There was an unexpected error. Try again.";
+              echo "<script type='text/javascript'>alert('$message');</script>";
+            }
           }
         }
       }
@@ -61,7 +75,7 @@
 <!doctype html>
 
 <head>
-  <title>Home</title>
+  <title>Settings</title>
   <link rel="stylesheet" href="./css/settings.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
