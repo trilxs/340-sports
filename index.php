@@ -3,7 +3,7 @@
     session_start();
 
     $userID = $_SESSION['userID'];
-    if (!empty($userID)) {
+    if (empty($userID)) {
         echo "<script type = 'text/javascript'> document.location = 'login.php'; </script>";
     }
 ?>

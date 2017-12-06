@@ -43,6 +43,9 @@
         }
         if ($num == 0) {
             echo "<div class='no-prev-games'>There are currently no game bets in your history.</div>";
+                                echo "<div class='game' id='game-1'>";
+              
+                echo "</div>";
         }
         
         mysqli_free_result($result);
