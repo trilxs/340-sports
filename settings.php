@@ -24,10 +24,10 @@
             $message = "Error, email was incorrect. Try again.";
             echo "<script type='text/javascript'>alert('$message');</script>";
           }
-          // else if(!filter_var($newemail1, FILTER_VALIDATE_EMAIL)===false){
-          //   $message = "Error, incorrect email format.";
-          //   echo "<script type='text/javascript'>alert('$message');</script>";
-          // }
+          if(!filter_var($newemail1, FILTER_VALIDATE_EMAIL)){
+            $message = "Error, incorrect email format.";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+          }
           else{
             $sql = "UPDATE accounts SET email = '$newemail1' WHERE userID = $userID AND email = '$oldmail'";
             mysqli_query($conn, $sql);
