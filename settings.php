@@ -24,6 +24,10 @@
             $message = "Error, email was incorrect. Try again.";
             echo "<script type='text/javascript'>alert('$message');</script>";
           }
+          // else if(!filter_var($newemail1, FILTER_VALIDATE_EMAIL)===false){
+          //   $message = "Error, incorrect email format.";
+          //   echo "<script type='text/javascript'>alert('$message');</script>";
+          // }
           else{
             $sql = "UPDATE accounts SET email = '$newemail1' WHERE userID = $userID AND email = '$oldmail'";
             mysqli_query($conn, $sql);
@@ -51,21 +55,32 @@
           echo "<script type='text/javascript'>alert('$error');</script>";
         }
         else{
-          $origPass = mysqli_query($conn, "SELECT password FROM accounts WHERE userID = '$userID'");
-          $row = mysqli_fetch_array($origPass, MYSQLI_ASSOC);
-          $origPass = $row['password'];
-          $tempPass = substr(MD5($oldpass), 0, 16);
-          $sql = "UPDATE accounts SET password = MD5('$pass') WHERE userID = $userID AND password = '$tempPass'";
-          mysqli_query($conn, $sql);
-          $compPass = mysqli_query($conn, "SELECT password FROM accounts WHERE userID = $userID");
-          // $result = mysqli_query($conn, $compPass);
-          $row = mysqli_fetch_array($compPass, MYSQLI_ASSOC);
-          $compPass = $row['password'];
-          if($origPass != $compPass){
-            $message = "Successfully updated the password!";
+          $checkPass = "SELECT password FROM accounts WHERE userID = $userID";
+          $result = mysqli_query($conn, $checkPass);
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+          $checkPass = $row['password'];
+          if(substr(MD5($oldpass), 0, 16) != $checkPass){
+            $message = "Error, password was incorrect. Try again.";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+          }
+          if(strlen($pass)>16){
+            $message = "Error, password cannot be longer than 16 characters. Try again.";
             echo "<script type='text/javascript'>alert('$message');</script>";
           }
           else{
+            $sql = "UPDATE accounts SET password = MD5('$pass') WHERE userID = $userID AND password = '$checkPass'";
+            mysqli_query($conn, $sql);
+            $compPass = mysqli_query($conn, "SELECT password FROM accounts WHERE userID = $userID");
+            $row = mysqli_fetch_array($compPass, MYSQLI_ASSOC);
+            $compPass = $row['password'];
+            if($origPass != $compPass){
+              $message = "Successfully updated the password!";
+              echo "<script type='text/javascript'>alert('$message');</script>";
+            }
+            else{
+              $message = "There was an unexpected error. Try again.";
+              echo "<script type='text/javascript'>alert('$message');</script>";
+            }
           }
         }
       }
