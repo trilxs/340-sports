@@ -20,7 +20,6 @@
                 echo "<div class='game' id='game-1'>";
                 echo "<table class='game-table'>";
                 echo "  <tr class='team-1-container'>";
-                echo "      <th class='team-1-image'>IMAGE</th>";
                 if ($row[9] == $row[10]) { 
                     echo "      <td class='team-1-name' style='color:#8F9AFF;'>$row[3]</td>"; 
                 } else {
@@ -30,7 +29,6 @@
                 
                 //team B
                 echo "  <tr class='team-2-container'>";
-                echo "      <th class='team-2-image'>IMAGE</th>";
                 if ($row[9] == $row[11]) {
                     echo "      <td class='team-2-name' style='color:#FF7A7A;'>$row[4]</td>";
                 } else {

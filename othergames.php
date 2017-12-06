@@ -23,13 +23,11 @@
                 echo "<div class='game' id='game-1'>";
                 echo "<table class='game-table'>";
                 echo "  <tr class='team-1-container'>";
-                echo "      <th class='team-1-image'>IMAGE</th>";
                 echo "      <td class='team-1-name'>$row[3]</td>"; 
                 echo "      <td class='team-1-score'>$row[1]</td></tr>";
 
                 //team B
                 echo "  <tr class='team-2-container'>";
-                echo "      <th class='team-2-image'>IMAGE</th>";
                 echo "      <td class='team-2-name'>$row[4]</td>";
                 echo "      <td class='team-2-score'>$row[2]</td></tr></table>";
                 //bet container success     
