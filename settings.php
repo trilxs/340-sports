@@ -14,7 +14,6 @@
       $sql = "SELECT email FROM accounts WHERE email = '$newemail1'";
       $result = mysqli_query($conn, $sql);
       $row_num = $result->num_rows;
-      echo "$row_num";
 
       if(!empty($oldmail)){
         if($newemail1 != $newemail2){
