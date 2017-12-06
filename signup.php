@@ -27,34 +27,74 @@ session_start();
   }
   if ($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($_POST["username"]) || empty($_POST["firstName"]) || empty($_POST["lastName"]) || empty($_POST["email"]) || empty($_POST["age"]) || empty($_POST["password"])){
-      $errorMessage = "<script> alert('Please do not leave any fields blank!')</script>";
-      echo $errorMessage;
+      echo "<script> alert('Please do not leave any fields blank!')</script>";
+    }
+    else if (!preg_match("/^[a-zA-Z ]*$/",$_POST["username"]) || preg_match('/\s/',$_POST["username"])) {
+      echo "<script> alert('Username can only have letters!')</script>";
+    }
+    else if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+      echo "<script> alert('Invalid email format!')</script>";
+    }
+    else if (strlen($_POST["password"]) > 16) {
+        echo "<script> alert('Password has to be less than or equal to 16!')</script>";
     }
     else{
       $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
       if (!$conn) {
         die('Could not connect: ' . mysql_error());
       }
-    if (isset($_POST['submit-button'])) {
-    // btnDelete
-      $userID = generateID();
-      $currencyAmount = 10000;
-      $username = mysqli_escape_string($conn,$_POST["username"]);
-      $firstName = mysqli_escape_string($conn,$_POST["firstName"]);
-      $lastName = mysqli_escape_string($conn,$_POST["lastName"]);
-      $email = mysqli_escape_string($conn,$_POST["email"]);
-      $age = mysqli_escape_string($conn,$_POST["age"]);
-      $password = mysqli_escape_string($conn,$_POST["password"]);
-      $salt = generateRandomSalt();
-      $query = "INSERT INTO accounts(userID, password, email, currencyAmount, username, firstName, lastName, middleName, age, salt) VALUES('$userID', MD5('$password'), '$email', '$currencyAmount', '$username', '$firstName', '$lastName', '$middleName', '$age', '$salt')";
-      if(mysqli_query($conn, $query)){
-       echo "<script type='text/javascript'> document.location = 'success.php'; </script>";
+
+      $test_username = $_POST["username"];
+      
+      $sql = "SELECT username FROM accounts WHERE username='$test_username'";
+      
+      $result = mysqli_query($conn, $sql);
+      if (!$result) {
+        die("Query to show fields from table failed");
       }
-      else {
-          $errorMessage = mysqli_error($conn);
-          echo "<script>alert('Unable to register!')</script>";
+      $has_matched = 0;
+      $row_num = $result->num_rows;
+      if($row_num != 0) {
+            $has_matched = 1;
+            echo "<script> alert('Username already exists!')</script>";
+            echo "<script type='text/javascript'> document.location = 'signup.php'; </script>";
       }
-    }
+      
+      $test_email = $_POST["email"];
+      
+      $sql = "SELECT email FROM accounts WHERE email='$test_email'";
+        
+      $result = mysqli_query($conn, $sql);
+      if (!$result) {
+        die("Query to show fields from table failed");
+      }
+      $row_num = $result->num_rows;
+      if($row_num != 0) {
+            $has_matched = 1;
+            echo "<script> alert('Email address already exists!')</script>";
+            echo "<script type='text/javascript'> document.location = 'signup.php'; </script>";
+      }
+      if ($has_matched == 0) {
+
+        // btnDelete
+          $userID = generateID();
+          $currencyAmount = 10000;
+          $username = mysqli_escape_string($conn,$_POST["username"]);
+          $firstName = mysqli_escape_string($conn,$_POST["firstName"]);
+          $lastName = mysqli_escape_string($conn,$_POST["lastName"]);
+          $email = mysqli_escape_string($conn,$_POST["email"]);
+          $age = mysqli_escape_string($conn,$_POST["age"]);
+          $password = mysqli_escape_string($conn,$_POST["password"]);
+          $salt = generateRandomSalt();
+          $query = "INSERT INTO accounts(userID, password, email, currencyAmount, username, firstName, lastName, middleName, age, salt) VALUES('$userID', MD5('$password'), '$email', '$currencyAmount', '$username', '$firstName', '$lastName', '$middleName', '$age', '$salt')";
+          if(mysqli_query($conn, $query)){
+           echo "<script type='text/javascript'> document.location = 'success.php'; </script>";
+          }
+          else {
+              $errorMessage = mysqli_error($conn);
+              echo "<script>alert('Unable to register!')</script>";
+          }
+      }
       mysqli_close($conn);
     }
   }
