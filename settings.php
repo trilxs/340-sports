@@ -10,6 +10,12 @@
       $oldmail = mysqli_escape_string($conn, $_POST["oldemail"]);
       $newemail1 = mysqli_escape_string($conn, $_POST["newemail"]);
       $newemail2 = mysqli_escape_string($conn, $_POST["newemail2"]);
+
+      $sql = "SELECT email FROM accounts WHERE email = '$newemail1'";
+      $result = mysqli_query($conn, $sql);
+      $row_num = $result->num_rows;
+      echo "$row_num";
+
       if(!empty($oldmail)){
         if($newemail1 != $newemail2){
           $error = "Error, emails do not match";
@@ -27,6 +33,9 @@
           if(!filter_var($newemail1, FILTER_VALIDATE_EMAIL)){
             $message = "Error, incorrect email format.";
             echo "<script type='text/javascript'>alert('$message');</script>";
+          }
+          if($row_num != 0){
+            echo "<script> alert('Error, email address already exists!')</script>";
           }
           else{
             $sql = "UPDATE accounts SET email = '$newemail1' WHERE userID = $userID AND email = '$oldmail'";
